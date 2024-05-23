@@ -21,7 +21,7 @@ import CustomInput from './CustomInput'
 import { authformSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { signIn, signUp } from '@/lib/actions/user.actions'
+import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
 
 
 
@@ -29,7 +29,7 @@ const AuthForm = ({type}: {type:string}) => {
   const [user, setUser] = useState(null);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const formSchema = authformSchema(type)
+  const formSchema = authformSchema(type);
 
    // 1. Define your form.
    const form = useForm<z.infer<typeof formSchema>>({
@@ -60,7 +60,6 @@ const AuthForm = ({type}: {type:string}) => {
           email: data.email,
           password: data.password
         })
-
         if(response) router.push('/')
       }
 
